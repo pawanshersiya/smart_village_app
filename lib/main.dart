@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'screens/login_page.dart';
 
 void main() {
-  runApp(const SmartVillageApp());
+  runApp(const MyApp());
 }
 
-class SmartVillageApp extends StatelessWidget {
-  const SmartVillageApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +14,9 @@ class SmartVillageApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Smart Village',
       theme: ThemeData(
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: const Color(0xFFF7F9FC),
-        fontFamily: 'Roboto',
+        primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const LoginPage(), // starting page
     );
   }
 }

@@ -1,68 +1,37 @@
 import 'package:flutter/material.dart';
+import '../widgets/bottom_nav_bar.dart';
+import 'package:smart_village_animated/widgets/village_header.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomNav(),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body:
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              /// 🔷 TOP GRADIENT HEADER
+              const VillageHeader(
+                title: "Gram Setu",
+                subtitle: "Green Valley",
+              ),
+
+    Expanded(
+    child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              /// HEADER
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Smart Village",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "Green Valley",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: const [
-                          Icon(Icons.circle, color: Colors.green, size: 10),
-                          SizedBox(width: 6),
-                          Text("Online", style: TextStyle(color: Colors.white)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 20),
 
               /// WELCOME
               const Text(
@@ -81,11 +50,11 @@ class DashboardPage extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.blueAccent,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16 ),
                 ),
                 child: Row(
                   children: const [
-                    Icon(Icons.info, color: Colors.white),
+                    Icon(Icons.info_outline, color: Colors.white),
                     SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -112,6 +81,7 @@ class DashboardPage extends StatelessWidget {
               const SizedBox(height: 20),
 
               /// STATS GRID
+
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
@@ -119,10 +89,14 @@ class DashboardPage extends StatelessWidget {
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
                 children: const [
-                  StatCard("Population", "2,847", "+2.3% this year", Icons.people, Colors.green),
-                  StatCard("Water Supply", "Good", "98% coverage", Icons.water_drop, Colors.blue),
-                  StatCard("Power Status", "Stable", "99.2% uptime", Icons.flash_on, Colors.orange),
-                  StatCard("Waste Mgmt", "On Track", "Next: Tomorrow", Icons.delete, Colors.green),
+                  StatCard("Population", "2,847", "+2.3% this year",
+                      Icons.groups_rounded, Colors.green),
+                  StatCard("Water Supply", "Good", "98% coverage",
+                      Icons.water_drop_rounded, Colors.blue),
+                  StatCard("Power Status", "Stable", "99.2% uptime",
+                      Icons.bolt_rounded, Colors.orange),
+                  StatCard("Waste Mgmt", "On Track", "Next: Tomorrow",
+                      Icons.delete_outline_rounded, Colors.green),
                 ],
               ),
 
@@ -144,7 +118,8 @@ class DashboardPage extends StatelessWidget {
               /// RECENT ACTIVITY
               const Text(
                 "Recent Activity",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 12),
@@ -167,13 +142,16 @@ class DashboardPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
+       ),
+      ],
+    ),
+      bottomNavigationBar: const AppBottomNav(currentIndex: 0),
     );
   }
 
-  /// COMPONENTS BELOW 👇
+  /// COMPONENTS 👇
 
-  static Widget _sectionCard({
+  Widget _sectionCard({
     required String title,
     required List<Widget> children,
   }) {
@@ -189,7 +167,9 @@ class DashboardPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(title,
+              style:
+              const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),
           ...children,
         ],
@@ -197,7 +177,8 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  static Widget _activityTile(String title, String subtitle, Color dotColor) {
+  Widget _activityTile(
+      String title, String subtitle, Color dotColor) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
@@ -213,27 +194,16 @@ class DashboardPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-                Text(subtitle, style: const TextStyle(color: Colors.grey)),
+                Text(title,
+                    style:
+                    const TextStyle(fontWeight: FontWeight.w600)),
+                Text(subtitle,
+                    style: const TextStyle(color: Colors.grey)),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  static BottomNavigationBar _bottomNav() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.blue,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Services"),
-        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "News"),
-        BottomNavigationBarItem(icon: Icon(Icons.report), label: "Complaints"),
-        BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
-      ],
     );
   }
 }
@@ -245,7 +215,9 @@ class StatCard extends StatelessWidget {
   final IconData icon;
   final Color color;
 
-  const StatCard(this.title, this.value, this.subtitle, this.icon, this.color, {super.key});
+  const StatCard(
+      this.title, this.value, this.subtitle, this.icon, this.color,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -258,14 +230,24 @@ class StatCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundColor: color.withOpacity(0.15),
+          Container(
+            width: 44,
+
+            height: 44,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Icon(icon, color: color),
           ),
           const SizedBox(height: 12),
           Text(title, style: const TextStyle(color: Colors.grey)),
-          Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+          Text(value,
+              style:
+              const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(subtitle,
+              style:
+              const TextStyle(color: Colors.grey, fontSize: 12)),
         ],
       ),
     );
@@ -288,7 +270,8 @@ class InfoRow extends StatelessWidget {
           const Spacer(),
           Text(
             value,
-            style: TextStyle(color: color, fontWeight: FontWeight.bold),
+            style:
+            TextStyle(color: color, fontWeight: FontWeight.bold),
           ),
         ],
       ),
