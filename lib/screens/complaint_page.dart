@@ -151,8 +151,9 @@ class _ComplaintCard extends StatelessWidget {
               ),
               const Spacer(),
 
-              // const SizedBox(height: 4),
-
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
               Text(
                 "ID: ${complaint.id}",
                 style: const TextStyle(fontSize: 11, color: Colors.grey),
@@ -162,6 +163,8 @@ class _ComplaintCard extends StatelessWidget {
               Text(complaint.date,
                   style:
                   const TextStyle(fontSize: 12, color: Colors.grey)),
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 12),

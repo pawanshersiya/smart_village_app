@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-final List<Complaint> complaints = [
+List<Complaint> complaints = [
 
   Complaint(
-    id: "001",
+    id: "009",
     title: "Street Light Not Working",
     description: "Light not working near house 45",
     category: "Infrastructure",
@@ -18,7 +18,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "002",
+    id: "008",
     title: "Water Leakage",
     description: "Pipeline broken near temple",
     category: "Water Supply",
@@ -33,7 +33,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "003",
+    id: "007",
     title: "Garbage Collection",
     description: "Garbage not collected for 2 days",
     category: "Sanitation",
@@ -48,7 +48,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "004",
+    id: "006",
     title: "Road Pothole",
     description: "Large pothole causing accidents near school",
     category: "Roads",
@@ -78,7 +78,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "006",
+    id: "004",
     title: "Electric Pole Tilted",
     description: "Electric pole dangerously tilted after storm",
     category: "Electricity",
@@ -93,7 +93,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "007",
+    id: "003",
     title: "Water Supply Low Pressure",
     description: "Very low water pressure in morning hours",
     category: "Water Supply",
@@ -108,7 +108,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "008",
+    id: "002",
     title: "Street Dogs Issue",
     description: "Stray dogs chasing children near playground",
     category: "Public Safety",
@@ -123,7 +123,7 @@ final List<Complaint> complaints = [
   ),
 
   Complaint(
-    id: "009",
+    id: "001",
     title: "Park Lights Damaged",
     description: "Garden lights broken and area is dark at night",
     category: "Parks & Recreation",

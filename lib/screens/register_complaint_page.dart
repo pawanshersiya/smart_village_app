@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smart_village_animated/screens/complaint_page.dart';
+import 'package:smart_village_animated/screens/register_complaint_page_2.dart';
 import 'package:smart_village_animated/widgets/village_header.dart';
+
+import '../widgets/bottom_nav_bar.dart';
 
 class RegisterComplaintPage extends StatefulWidget {
   const RegisterComplaintPage({super.key});
@@ -12,6 +16,22 @@ class _RegisterComplaintPageState extends State<RegisterComplaintPage>
     with SingleTickerProviderStateMixin {
 
   int? selectedIndex;
+  int _currentIndex = 4;
+  bool _isBackHovered = false;
+
+
+
+
+  final List<_Category> categories = [
+    _Category("Water Supply", Icons.water_drop, Colors.blue),
+    _Category("Electricity", Icons.bolt, Colors.orange),
+    _Category("Waste", Icons.delete, Colors.green),
+    _Category("Street Lights", Icons.lightbulb, Colors.purple),
+    _Category("Roads", Icons.flag, Colors.deepOrange),
+    _Category("Internet", Icons.wifi, Colors.indigo),
+    _Category("CCTV", Icons.camera_alt, Colors.grey),
+    _Category("Transport", Icons.directions_bus, Colors.teal),
+  ];
 
   late AnimationController glowController;
   late Animation<double> glowAnimation;
@@ -40,7 +60,6 @@ class _RegisterComplaintPageState extends State<RegisterComplaintPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6F8),
-      bottomNavigationBar: _buildBottomNav(),
       body:
         Column(
           children: [
@@ -70,19 +89,70 @@ class _RegisterComplaintPageState extends State<RegisterComplaintPage>
             ),
           ],
         ),
-      // ),
+      bottomNavigationBar: const AppBottomNav(currentIndex: 4),
     );
   }
 
-  Widget _buildBackButton() {
-    return const Row(
-      children: [
-        Icon(Icons.arrow_back, size: 18),
-        SizedBox(width: 6),
-        Text("Back"),
-      ],
-    );
-  }
+  Widget _buildBackButton() => MouseRegion(
+    cursor: SystemMouseCursors.click,
+    onEnter: (_) => setState(() => _isBackHovered = true),
+    onExit: (_) => setState(() => _isBackHovered = false),
+    child: InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ComplaintsPage(
+          ),
+        ),
+      ),
+      borderRadius: BorderRadius.circular(10),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: _isBackHovered
+              ? Colors.white
+              : Colors.transparent, // 👈 container appears on hover
+          borderRadius: BorderRadius.circular(10),
+          border: _isBackHovered
+              ? Border.all(color: Colors.grey.shade300)
+              : null,
+          boxShadow: _isBackHovered
+              ? const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ]
+              : [],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.arrow_back, size: 18),
+            SizedBox(width: 6),
+            Text(
+              "Back",
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  // InkWell(
+  //   onTap: ()=> Navigator.pop(context),
+  //   child: const Row(
+  //     children:[
+  //       Icon(Icons.arrow_back,size:18),
+  //       SizedBox(width:6),
+  //       Text("Back")
+  //     ],
+  //   ),
+  // );
+
 
   Widget _buildTitle() {
     return const Column(
@@ -232,7 +302,18 @@ class _RegisterComplaintPageState extends State<RegisterComplaintPage>
             width: double.infinity,
             height: 48,
             child: ElevatedButton(
-              onPressed: enabled ? () {} : null,
+              onPressed: enabled ? () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ComplaintDetailsPage(
+                      category: categories[selectedIndex!].title,
+                    ),
+                  ),
+                );
+
+
+              } : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 disabledBackgroundColor: Colors.grey.shade300,
@@ -267,22 +348,6 @@ class _RegisterComplaintPageState extends State<RegisterComplaintPage>
           ),
         );
       },
-    );
-  }
-
-  Widget _buildBottomNav() {
-    return  BottomNavigationBar(
-      currentIndex: 3,
-      type: BottomNavigationBarType.fixed,
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Services"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.notifications), label: "News"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble), label: "Complaints"),
-        BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
-      ],
     );
   }
 }
