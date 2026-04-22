@@ -66,24 +66,23 @@ User → Register/Login → Dashboard → Submit Request → Track Status
 ## 📸 Screenshots
 
 <p align="center">
-  <i>Add your app screenshots here</i>
 </p>
 
-| User Dashboard                 | Announcements                    | Announcement Details                |
-|--------------------------------|----------------------------------|-------------------------------------|
-| ![](assets/home.png)           | ![](assets/announcements.png)    | ![](assets/announcement_detail.png) |
-| Complaints                     | Complaint Details                | Register Complaint                  |
-| ------------------------------ | ----------------------------     | --------------------------          |
-| ![](assets/complaints.png)     | ![](assets/complaint_detail.png) | ![](assets/register_complaint.png)  |
+| User Dashboard                 | Announcements                   | Announcement Details               |
+|--------------------------------|---------------------------------|------------------------------------|
+| ![](assets/home.png)           | ![](assets/announcements.png)   | ![](assets/announcementdetail.png) |
+| Complaints                     | Complaint Details               | Register Complaint                 |
+| ------------------------------ | ----------------------------    | --------------------------         |
+| ![](assets/complaints.png)     | ![](assets/complaintdetail.png) | ![](assets/register_complaint.png) |
 
 ---
 
 ## 🎥 Demo
 
 <p align="center">
+  <img src="assets/app_demo.gif" width="300"/>
 </p>
 
-![App Demo](assets/app_demo.gif)
 ---
 
 ## 🛠 Tech Stack
