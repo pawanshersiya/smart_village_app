@@ -68,12 +68,12 @@ User → Register/Login → Dashboard → Submit Request → Track Status
 <p align="center">
 </p>
 
-| User Dashboard                 | Announcements                   | Announcement Details               |
-|--------------------------------|---------------------------------|------------------------------------|
-| ![](assets/home.png)           | ![](assets/announcements.png)   | ![](assets/announcementdetail.png) |
-| Complaints                     | Complaint Details               | Register Complaint                 |
-| ------------------------------ | ----------------------------    | --------------------------         |
-| ![](assets/complaints.png)     | ![](assets/complaintdetail.png) | ![](assets/register_complaint.png) |
+| User Dashboard                 | Announcements                 | Announcement Details               |
+|--------------------------------|-------------------------------|------------------------------------|
+| ![](assets/home.png)           | ![](assets/announcements.png) | ![](assets/news_detail.png)        |
+| Complaints                     | Complaint Details             | Register Complaint                 |
+| ------------------------------ | ----------------------------  | --------------------------         |
+| ![](assets/complaints.png)     | ![](assets/com_detail.png)    | ![](assets/register_complaint.png) |
 
 ---
 
